@@ -1,14 +1,14 @@
 <?php
-    require_once './models/profesor.model.php';
-    require_once './views/profesor.view.php';
+    require_once 'app/models/profesor.model.php';
+    require_once 'app/views/profesor.view.php';
 
-    class profesorController {
+    class ProfesorController {
         private $model;
         private $view;
 
         public function __construct (){
-            $this->model = new profesorModel();
-            $this->view = new profesorView(); 
+            $this->model = new ProfesorModel();
+            $this->view = new ProfesorView(); 
         }
 
         public function add (){
@@ -29,21 +29,20 @@
             $nombre = $_POST['nombre'];
             $email = $_POST['email'];
             $telefono= $_POST['telefono'];
-            $idioma = $_POST['idioma']
+            $idioma = $_POST['idioma'];
         
             $id = $this->model->insert($nombre, $telefono, $email, $id_idioma);
         
             header('Location: ' . BASE_URL);
         }
 
-        public function showList ($filtro) {
-            $profesor = $this->model->getAll($filtro);
-
-            return $this->view->show($profesor);
+        public function showList($filtro=null) {
+            $profesores = $this->model->getAll($filtro);
+            return $this->view->showList($profesores);
         }
 
-        public function show ($id) {
-            $profesor = $this->model->($id);
+        public function show($id){
+            $profesor = $this->model->getById($id);
             return $this->view->show($profesor);
         }
         
