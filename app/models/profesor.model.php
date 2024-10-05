@@ -1,6 +1,6 @@
 <?php
 
-class profesorModel {
+class ProfesorModel {
     private $db;
 
     public function __construct (){
@@ -15,16 +15,17 @@ class profesorModel {
             $q = 'SELECT * FROM profesor WHERE id_idioma = ?';
            $args[] = $filtro;  
         }
-        $profesor = $this->db->prepare($q);
+        echo $q."</br>";
+        $query = $this->db->prepare($q);
         $query->execute($args);
     
-        $profesor = $query->fetchAll(PDO::FETCH_OBJ); 
+        $profesores = $query->fetchAll(PDO::FETCH_OBJ); 
     
-        return $profesor;
+        return $profesores;
         }
 
     public function getById ($id) {
-        $query = $this->db->prepare(('SELECT * FROM profesor WHERE id = ?');)
+        $query = $this->db->prepare('SELECT * FROM profesor WHERE id = ?');
         $query->execute([$id]);
 
         $profesor = $query->fetch(PDO::FETCH_OBJ);
