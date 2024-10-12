@@ -1,0 +1,20 @@
+<?php require 'templates/layouts/header.phtml' ?>
+
+
+
+<ul class="list-group">
+<?php foreach($profesores as $profesor): ?>
+    <li class="list-group-item item-profesor <?php if($profesor->finalizada): ?> finished <?php endif ?>">
+        <div class="label">
+            <b><?= htmlspecialchars($profesor->nombre) ?></b>
+        </div>
+        <div class="actions">
+            <a href="eliminar/<?= $profesor->id ?>" type="button" class='btn btn-danger btn-sm ml-auto'>Borrar</a>
+        </div>
+    </li>
+<?php endforeach ?>
+</ul>
+
+
+
+<?php require 'templates/layouts/footer.phtml' ?>

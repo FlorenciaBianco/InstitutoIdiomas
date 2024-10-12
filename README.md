@@ -9,3 +9,5 @@ La clave forànea corresponde al atributo id_idioma de la tabla Profesor.
 La clave primaria corresponde al atributo primario autoincremental id_idioma de la tabla Idioma. 
 
 ![image](docs/img/erd.png)
+
+

@@ -8,10 +8,17 @@
 
         public function __construct (){
             $this->model = new ProfesorModel();
+            $this->idiomaModel = new IdiomaModel();
+
             $this->view = new ProfesorView(); 
         }
 
-        public function add (){
+        public function add(){
+            if($_SERVER['REQUEST_METHOD']=='GET'){
+                $indiceIdiomas = $this->getLanguageIndex();
+                return $this->view->showAddForm($indiceIdiomas);
+            }
+
             if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {
                 return $this->view->showError('Falta completar el nombre');
             }
@@ -29,22 +36,40 @@
             $nombre = $_POST['nombre'];
             $email = $_POST['email'];
             $telefono= $_POST['telefono'];
-            $idioma = $_POST['idioma'];
+            $id_idioma = $_POST['idioma'];
         
             $id = $this->model->insert($nombre, $telefono, $email, $id_idioma);
-        
-            header('Location: ' . BASE_URL);
+
+            header('Location: ' . BASE_URL."profesores");
         }
 
-        public function showList($filtro=null) {
-            $profesores = $this->model->getAll($filtro);
-            return $this->view->showList($profesores);
+        public function showList() {
+            $profesores = $this->model->getAll();
+
+            return $this->view->showList($profesores, $this->getLanguageIndex());
         }
 
-        public function show($id){
-            $profesor = $this->model->getById($id);
+        private function getLanguageIndex(){
+            $idiomas = $this->idiomaModel->getAll();
+            $indiceIdiomas = array();
+            foreach ($idiomas as $idioma) {
+                $indiceIdiomas[$idioma->id_idioma] = $idioma->nombre;
+            }
+            return $indiceIdiomas;
+        }
+
+        public function show($nombre){
+            $profesor = $this->model->getByName($nombre);
             return $this->view->show($profesor);
         }
+
+        public function showByIdioma($id){
+            $profesores = $this->model->getByIdioma($id);
+            return $this->view->showByIdioma($profesores);
+        }
+
+       
+       
         
         public function delete($id) {
              $profesor = $this->model->getById($id);

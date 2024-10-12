@@ -1,0 +1,14 @@
+<?php require 'templates/layouts/header.phtml' ?>
+
+
+
+<ul class="list-group">
+<?php foreach($idiomas as $idioma): ?>
+        <div class="label">
+            <b><?= htmlspecialchars($idioma->nombre) ?></b> | <?=substr($idioma->descripcion,0,25)?> | (Modulo <?= $idioma->modulos ?>)
+        </div>
+<?php endforeach ?>
+</ul>
+
+
+<?php require 'templates/layouts/footer.phtml' ?>

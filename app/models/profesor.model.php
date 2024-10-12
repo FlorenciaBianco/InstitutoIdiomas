@@ -5,33 +5,35 @@ class ProfesorModel {
 
     public function __construct (){
         $this->db = new PDO('mysql:host=localhost;dbname=InstitutoIdiomas;charset=utf8', 'root', '');
-
         }
     
-    public function getAll($filtro = null) {
-        $q = 'SELECT * FROM profesor';
-        $args = array();
-        if(isset($filtro)){
-            $q = 'SELECT * FROM profesor WHERE id_idioma = ?';
-           $args[] = $filtro;  
-        }
-        echo $q."</br>";
-        $query = $this->db->prepare($q);
-        $query->execute($args);
+    public function getAll() {
+        $query = $this->db->prepare('SELECT * FROM profesor');
+        $query->execute();
     
         $profesores = $query->fetchAll(PDO::FETCH_OBJ); 
     
         return $profesores;
         }
 
-    public function getById ($id) {
-        $query = $this->db->prepare('SELECT * FROM profesor WHERE id = ?');
-        $query->execute([$id]);
+    public function getByName ($nombre) {
+        $query = $this->db->prepare('SELECT * FROM profesor WHERE nombre = ?');
+        $query->execute([$nombre]);
 
         $profesor = $query->fetch(PDO::FETCH_OBJ);
 
         return $profesor;
         }
+
+    public function getByIdioma($id) {
+            $query = $this->db->prepare('SELECT * FROM profesor WHERE id_idioma = ?');
+            $query->execute([$id]);
+    
+            $profesores = $query->fetchAll(PDO::FETCH_OBJ);
+    
+            return $profesores;
+            
+            }
 
     public function insert ($nombre, $telefono, $email, $id_idioma){
         $query = $this->db->prepare('INSERT INTO profesor(nombre, telefono, email, id_idioma) VALUES (?, ?, ?, ?)');

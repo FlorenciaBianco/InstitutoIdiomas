@@ -1,7 +1,8 @@
 <?php
 require_once 'app/controllers/profesor.controller.php';
 require_once 'app/controllers/idioma.controller.php';
-require_once 'app/controllers/error.controller.php';
+
+
 // base_url para redirecciones y base tag
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -9,56 +10,54 @@ $action = '';
 if (!empty( $_GET['action'])) {
     $action = $_GET['action'];
 }
-#/entidad/accion/
-# router.php?action=/profesores
-#   /listar
-#   /agregar/id
-#   /editar/id/
-#   /eliminar/id/
 
-# router.php?action=/idiomas/
-#   /listar
-#   /agregar/id
-#   /editar/id/
-#   /eliminar/id/
 $params = explode('/', $action);
 
 switch ($params[0]) {
     case 'profesores':
+        if(isset($params[1])){
+            $controller = new ProfesorController();
+            $controller->showByIdioma($params[1]);
+        }else {
+            $controller = new ProfesorController();
+            $controller->showList();
+        }
+        break;
+    case 'profesor':
         $controller = new ProfesorController();
-        routerAction($controller, $params);
+        $controller->show($params[1]);
         break;
     case 'idiomas':
         $controller = new IdiomaController();
-        routerAction($controller, $params);
+        $controller->showList();
         break;
+    case 'agregar':
+        // sessionAuthMiddleware($res);
+        // verifyAuthMiddleware($res);  /// Verifica que el usuario este logueado o redirige al login ///
+        switch ($params[1]){
+            case'idioma':
+            $controller = new IdiomaController();
+            $controller->add();
+            break;
+            case'profesor':
+            $controller = new ProfesorController();
+            $controller->add();
+            break;
+        }
+        break;
+    // case 'eliminar':
+    //    sessionAuthMiddleware($res);
+    //    verifyAuthMiddleware($res);  /// Verifica que el usuario este logueado o redirige al login ///
+    //    break;
     default: 
-        // $controller = new handleErrorController();
-        // $controller = showError();
+        echo('404 Page not found'); 
         break;
+        
 }
 
 
-function routerAction($controller, $params){
-    switch($params[1]) {
-        case "listar":
-            $controller->showlist();
-            break;
-        case "listarPorIdioma":
-            $controller->showlist($params[2]);
-            break;
-        // case "detalle":
-        //     $controller->show($params[2]);
-        // case "agregar":
-        //     $controller->add($params[2]);
-        // case "editar":
-        //     $controller->update($params[2]);
-        // case "eliminar":
-        //     $controller->delete($params[2]);
-        default:
-            break;
-    }
-}
+
+
 
 
 
