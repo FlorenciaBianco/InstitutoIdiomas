@@ -68,18 +68,14 @@
             return $this->view->showByIdioma($profesores);
         }
 
-       
-       
-        
-        public function delete($nombre) {
-             $profesor = $this->model->getByName($nombre);
+        public function delete($id) {
+             $profesor = $this->model->getById($id);
     
             if (!$profesor) {
-                return $this->view->showError("No existe el profesor con el nombre=$nombre");
+                return $this->view->showError("No existe el profesor con el id = $id");
             }
-    
-    
-            $this->model->delete($nombre);
+
+            $this->model->delete($id);
     
             header('Location: ' . BASE_URL."profesores");
         }
@@ -88,11 +84,10 @@
             $profesor = $this->model->getById($id);
     
             if (!$profesor) {
-                return $this->view->showError("No existe la tarea con el id=$id");
+                return $this->view->showError("No existe el profesor con el id = $id");
             }
-    
-            // actualiza la tarea
-            $this->model->update($id);
+            $this->view->showUpdateForm($profesor);
+            $this->model->update($id,$profesor);
     
             header('Location: ' . BASE_URL);
         }

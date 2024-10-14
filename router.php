@@ -32,8 +32,8 @@ switch ($params[0]) {
         $controller->showList();
         break;
     case 'agregar':
-        // sessionAuthMiddleware($res);
-        // verifyAuthMiddleware($res);  /// Verifica que el usuario este logueado o redirige al login ///
+         sessionAuthMiddleware($res);
+         verifyAuthMiddleware($res);  /// Verifica que el usuario este logueado o redirige al login ///
         switch ($params[1]){
             case'idioma':
             $controller = new IdiomaController();
@@ -46,8 +46,8 @@ switch ($params[0]) {
         }
         break;
     case 'eliminar':
-       // sessionAuthMiddleware($res);
-       //verifyAuthMiddleware($res);  
+         sessionAuthMiddleware($res);
+         verifyAuthMiddleware($res);  
         switch ($params[1]){
             case'idioma':
             $controller = new IdiomaController();
@@ -59,9 +59,9 @@ switch ($params[0]) {
             break;
         }
         break;  
-    case 'Modificar':
-            // sessionAuthMiddleware($res);
-            //verifyAuthMiddleware($res);  
+    case 'modificar':
+         sessionAuthMiddleware($res);
+         verifyAuthMiddleware($res);  
         switch ($params[1]){
              case'idioma':
              $controller = new IdiomaController();

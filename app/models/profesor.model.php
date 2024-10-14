@@ -24,7 +24,15 @@ class ProfesorModel {
 
         return $profesor;
         }
-
+    public function getById ($nombre) {
+        $query = $this->db->prepare('SELECT * FROM profesor WHERE id = ?');
+        $query->execute([$id]);
+    
+        $profesor = $query->fetch(PDO::FETCH_OBJ);
+    
+        return $profesor;
+            }
+    
     public function getByIdioma($id) {
             $query = $this->db->prepare('SELECT * FROM profesor WHERE id_idioma = ?');
             $query->execute([$id]);
@@ -44,14 +52,14 @@ class ProfesorModel {
         return $id;
         }
 
-    public function delete ($nombre) {
-          $query = $this->db->prepare ('DELETE FROM profesor WHERE nombre = ?');
-          $query->execute([$nombre]); 
+    public function delete ($id) {
+          $query = $this->db->prepare ('DELETE FROM profesor WHERE id = ?');
+          $query->execute([$id]); 
         }
 
-    public function update ($id){
-            $query = $this->db->prepare ('UPDATE profesor WHERE nombre = ?');
-            $query = execute($id);
+    public function update ($id, $profesor){
+            $query = $this->db->prepare('UPDATE profesor SET nombre = ?, telefono = ?, email = ? id_idioma = ? WHERE id = ?');
+            $query->execute([$id]);
         }
 
 

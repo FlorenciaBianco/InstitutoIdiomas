@@ -26,5 +26,8 @@ class ProfesorView{
     public function showError($error) {
         echo $error;
     }
+    public function showUpdateForm($profesor) {
+        require_once 'templates/form_alta_profesor.phtml'
+    }
 
 }
