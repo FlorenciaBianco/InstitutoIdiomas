@@ -45,7 +45,7 @@ switch ($params[0]) {
             break;
         }
         break;
-     case 'eliminar':
+    case 'eliminar':
        // sessionAuthMiddleware($res);
        //verifyAuthMiddleware($res);  
         switch ($params[1]){
@@ -58,7 +58,21 @@ switch ($params[0]) {
             $controller->delete($params[2]);
             break;
         }
-        break;      
+        break;  
+    case 'Modificar':
+            // sessionAuthMiddleware($res);
+            //verifyAuthMiddleware($res);  
+        switch ($params[1]){
+             case'idioma':
+             $controller = new IdiomaController();
+             $controller->update($params[2]);
+             break;
+             case'profesor':
+             $controller = new ProfesorController();
+             $controller->update($params[2]);
+            break;
+            }
+            break;    
     default: 
         echo('404 Page not found'); 
         break;
