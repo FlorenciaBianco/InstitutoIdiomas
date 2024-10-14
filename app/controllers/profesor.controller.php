@@ -72,7 +72,7 @@
        
         
         public function delete($id) {
-             $profesor = $this->model->getById($id);
+             $profesor = $this->model->getByName($nombre);
     
             if (!$profesor) {
                 return $this->view->showError("No existe el profesor con el id=$id");

@@ -44,13 +44,13 @@ class ProfesorModel {
         return $id;
         }
 
-    public function delete ($id) {
-          $query = $this->db->prepare ('DELETE FROM profesor WHERE id = ?');
+    public function delete ($nombre) {
+          $query = $this->db->prepare ('DELETE FROM profesor WHERE nombre = ?');
           $query->excute([$id]); 
         }
 
     public function update ($id){
-            $query = $this->db->prepare ('UPDATE profesor WHERE id = ?');
+            $query = $this->db->prepare ('UPDATE profesor WHERE nombre = ?');
             $query = excute($id);
         }
 
