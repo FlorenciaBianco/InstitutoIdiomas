@@ -71,17 +71,17 @@
        
        
         
-        public function delete($id) {
+        public function delete($nombre) {
              $profesor = $this->model->getByName($nombre);
     
             if (!$profesor) {
-                return $this->view->showError("No existe el profesor con el id=$id");
+                return $this->view->showError("No existe el profesor con el nombre=$nombre");
             }
     
     
-            $this->model->delete($id);
+            $this->model->delete($nombre);
     
-            header('Location: ' . BASE_URL);
+            header('Location: ' . BASE_URL."profesores");
         }
     
         public function update($id) {

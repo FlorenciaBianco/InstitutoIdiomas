@@ -25,7 +25,7 @@
             $profesores = $this->model->getById($nombre);
             return $this->view->show($profesor);
         }
-
+        
         public function add(){
             if ($_SERVER['REQUEST_METHOD']=='GET'){
                 return $this->view->showAddForm();
@@ -59,7 +59,7 @@
 
            $this->model->delete($id);
    
-           header('Location: ' . BASE_URL);
+           header('Location: ' . BASE_URL."idiomas");
         }
 
         public function update($id) {

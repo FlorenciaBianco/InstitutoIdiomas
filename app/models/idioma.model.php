@@ -38,13 +38,13 @@ class IdiomaModel{
     }
     
     public function delete($id){
-        $query = $this->db->prepare ('DELETE FROM idioma WHERE id = ?');
-        $query->excute([$id]); 
+        $query = $this->db->prepare ('DELETE FROM idioma WHERE id_idioma = ?');
+        $query->execute([$id]); 
     }
 
     public function update ($id){
-        $query = $this->db->prepare ('UPDATE idioma WHERE id = ?');
-        $query = excute($id);
+        $query = $this->db->prepare ('UPDATE idioma WHERE id_idioma = ?');
+        $query = execute($id);
     }
 
 }
