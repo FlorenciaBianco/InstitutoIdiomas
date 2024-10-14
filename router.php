@@ -45,10 +45,20 @@ switch ($params[0]) {
             break;
         }
         break;
-    // case 'eliminar':
-    //    sessionAuthMiddleware($res);
-    //    verifyAuthMiddleware($res);  /// Verifica que el usuario este logueado o redirige al login ///
-    //    break;
+     case 'eliminar':
+       // sessionAuthMiddleware($res);
+       //verifyAuthMiddleware($res);  
+        switch ($params[1]){
+            case'idioma':
+            $controller = new IdiomaController();
+            $controller->delete($params[2]);
+            break;
+            case'profesor':
+            $controller = new ProfesorController();
+            $controller->delete($params[2]);
+            break;
+        }
+        break;      
     default: 
         echo('404 Page not found'); 
         break;

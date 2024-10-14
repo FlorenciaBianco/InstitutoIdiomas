@@ -75,11 +75,11 @@
              $profesor = $this->model->getById($id);
     
             if (!$profesor) {
-                return $this->view->showError("No existe la tarea con el id=$id");
+                return $this->view->showError("No existe el profesor con el id=$id");
             }
     
     
-            $this->model->erase($id);
+            $this->model->delete($id);
     
             header('Location: ' . BASE_URL);
         }

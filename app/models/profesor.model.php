@@ -44,7 +44,7 @@ class ProfesorModel {
         return $id;
         }
 
-    public function delete ($id){
+    public function delete ($id) {
           $query = $this->db->prepare ('DELETE FROM profesor WHERE id = ?');
           $query->excute([$id]); 
         }

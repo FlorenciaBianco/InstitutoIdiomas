@@ -26,12 +26,8 @@
             return $this->view->show($profesor);
         }
 
-        public function showAddForm(){
-            $this->view->showAddForm();
-        }
-        
         public function add(){
-            if($_SERVER['REQUEST_METHOD']=='GET'){
+            if ($_SERVER['REQUEST_METHOD']=='GET'){
                 return $this->view->showAddForm();
             }
             if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {
