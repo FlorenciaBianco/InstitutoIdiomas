@@ -12,7 +12,6 @@ class AuthController {
     }
 
     public function showLogin() {
-    
         return $this->view->showLogin();
     }
 
@@ -22,7 +21,7 @@ class AuthController {
         }
     
         if (!isset($_POST['password']) || empty($_POST['password'])) {
-            return $this->view->showLogin('Falta completar la contraseña');
+          return $this->view->showLogin('Falta completar la contraseña');
         }
     
         $email = $_POST['email'];

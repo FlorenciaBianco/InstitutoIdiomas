@@ -10,6 +10,10 @@ class IdiomaView {
         require_once 'templates/form_alta_idiomas.phtml';  
     }
 
+    public function showUpdateForm($idioma){
+        require_once 'templates/form_alta_idiomas.phtml';  
+    }
+
     public function showError($error) {
         echo $error;
     }

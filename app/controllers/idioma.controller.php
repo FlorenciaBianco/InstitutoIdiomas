@@ -53,8 +53,8 @@
         public function delete($id) {
             $idioma = $this->model->getById($id);
    
-           if (!$idioma) {
-               return $this->view->showError("No existe el idioma con el id=$id");
+           if (!$id) {
+               return $this->view->showError("No existe el idioma con el id_idioma=$id");
            }
 
            $this->model->delete($id);
@@ -63,15 +63,32 @@
         }
 
         public function update($id) {
-            $idioma = $this->model->getById($id);
-    
-            if (!$idioma) {
-                return $this->view->showError("No existe el idioma con el id=$id");
+            if (!$id) {
+                return $this->view->showError("No existe el idioma con el id_idioma=$id");
             }
-    
-            $this->model->update($id);
-    
-            header('Location: ' . BASE_URL);
+            if ($_SERVER['REQUEST_METHOD']=='GET'){
+                $idioma = $this->model->getById($id);
+                return $this->view->showUpdateForm($idioma);
+            }
+            if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {
+                return $this->view->showError('Falta completar el nombre del idioma');
+            }
+        
+            if (!isset($_POST['descripcion']) || empty($_POST['descripcion'])) {
+                return $this->view->showError('Falta completar la descripcion');
+            }
+            if (!isset($_POST['modulos']) || empty($_POST['modulos'])) {
+                return $this->view->showError('Falta completar el modulos');
+            }
+           
+            $nombre = $_POST['nombre'];
+            $descripcion = $_POST['descripcion'];
+            $modulos= $_POST['modulos'];
+           
+            $id = $this->model->update($id, $nombre, $descripcion, $modulos);
+
+            header('Location: ' . BASE_URL."idiomas");
+            
         }
      
 

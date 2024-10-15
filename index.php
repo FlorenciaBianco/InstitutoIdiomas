@@ -1,3 +1,5 @@
 <?php
 
-echo password_hash('$biancobiondi', PASSWORD_DEFAULT); 
+echo password_hash('admin', PASSWORD_DEFAULT); 
+
+$2y$10$1yrWhYguqF9Yj9G64T58.OD7OiBIpaSIn3eSH7KZubfJPXD2zJbRy

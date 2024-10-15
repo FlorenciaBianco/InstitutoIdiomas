@@ -42,9 +42,9 @@ class IdiomaModel{
         $query->execute([$id]); 
     }
 
-    public function update ($id){
-        $query = $this->db->prepare ('UPDATE idioma WHERE id_idioma = ?');
-        $query = execute($id);
+    public function update($id, $nombre, $descripcion, $modulos){
+        $query = $this->db->prepare ('UPDATE idioma SET nombre = ?, descripcion = ?, modulos = ? WHERE id_idioma = ?');
+        $query->execute([$nombre,$descripcion,$modulos,$id]);
     }
 
 }

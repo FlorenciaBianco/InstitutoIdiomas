@@ -1,10 +1,15 @@
 <?php
+require_once 'libs/response.php';
+require_once 'app/middlewares/session.auth.middleware.php';
+require_once 'app/middlewares/verify.auth.middleware.php';
 require_once 'app/controllers/profesor.controller.php';
 require_once 'app/controllers/idioma.controller.php';
-
+require_once 'app/controllers/auth.controller.php';
 
 // base_url para redirecciones y base tag
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
+
+$res = new Response(); 
 
 $action = ''; 
 if (!empty( $_GET['action'])) {
@@ -59,9 +64,9 @@ switch ($params[0]) {
             break;
         }
         break;  
-    case 'modificar':
-         sessionAuthMiddleware($res);
-         verifyAuthMiddleware($res);  
+    case 'Modificar':
+        //  sessionAuthMiddleware($res);
+        //  verifyAuthMiddleware($res);  
         switch ($params[1]){
              case'idioma':
              $controller = new IdiomaController();
@@ -72,7 +77,18 @@ switch ($params[0]) {
              $controller->update($params[2]);
             break;
             }
-            break;    
+            break; 
+    case 'showLogin':
+            $controller = new AuthController();
+            $controller->showLogin();
+            break;
+    case 'login':
+            $controller = new AuthController();
+            $controller->login();
+            break;
+    case 'logout':
+            $controller = new AuthController();
+            $controller->logout();   
     default: 
         echo('404 Page not found'); 
         break;
