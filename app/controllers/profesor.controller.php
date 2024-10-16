@@ -9,7 +9,6 @@
         public function __construct (){
             $this->model = new ProfesorModel();
             $this->idiomaModel = new IdiomaModel();
-
             $this->view = new ProfesorView(); 
         }
 
@@ -81,13 +80,35 @@
         }
     
         public function update($id) {
-            $profesor = $this->model->getById($id);
     
-            if (!$profesor) {
+            if (!$id) {
                 return $this->view->showError("No existe el profesor con el id = $id");
             }
-            $this->view->showUpdateForm($profesor);
-            $this->model->update($id,$profesor);
+            if($_SERVER['REQUEST_METHOD']=='GET'){
+                $profesor = $this->model->getById($id);
+                return $this->view->showUpdateForm($profesor);
+            }
+
+            if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {
+                return $this->view->showError('Falta completar el nombre');
+            }
+        
+            if (!isset($_POST['email']) || empty($_POST['email'])) {
+                return $this->view->showError('Falta completar el email');
+            }
+            if (!isset($_POST['telefono']) || empty($_POST['telefono'])) {
+                return $this->view->showError('Falta completar el telefono');
+            }
+            if (!isset($_POST['idioma']) || empty($_POST['idioma'])) {
+                return $this->view->showError('Falta completar la idioma');
+            }
+            
+            $nombre = $_POST['nombre'];
+            $email = $_POST['email'];
+            $telefono= $_POST['telefono'];
+            $id_idioma = $_POST['idioma'];
+        
+            $id = $this->model->update($nombre, $telefono, $email, $id_idioma);
     
             header('Location: ' . BASE_URL);
         }

@@ -3,14 +3,20 @@
         <div class="col-9">
             <div class="form-group">
                 <label>Nombre</label>
-                <input required name="nombre" type="text" class="form-control">
+                <input required name="nombre" type="text" class="form-control"
+                <?php if($profesor): ?> 
+                    value="<?= htmlspecialchars($profesor->nombre) ?>"
+                <?php endif ?> >
             </div>
         </div>
 
         <div class="col-3">
             <div class="form-group">
-                <label>seleccione idioma</label>
-                <select required name="idioma" class="form-control">
+                <label>Seleccione idioma</label>
+                <select required name="idioma" class="form-control"
+                <?php if($profesor): ?> 
+                    value="<?= htmlspecialchars($profesor->idioma) ?>"
+                <?php endif ?> 
                     <?php foreach($indiceIdiomas as $id => $idioma): ?>
                         <option value="<?= $id ?>"><?= $idioma ?></option>
                     <?php endforeach ?>
@@ -20,11 +26,14 @@
     </div>
     <div class="form-group">
         <label>Telefono</label>
-        <textarea name="telefono" class="form-control" rows="3"></textarea>
+        <textarea name="telefono" class="form-control" rows="3"><?php if($profesor): ?><?= htmlspecialchars($profesor->telefono) ?><?php endif ?>
+        </textarea>
     </div>
     <div class="form-group">
         <label>Email</label>
-        <textarea name="email" class="form-control" rows="3"></textarea>
+        <textarea name="email" class="form-control" rows="3"><?php if($profesor): ?><?= htmlspecialchars($profesor->email) ?><?php endif ?>
+
+        </textarea>
     </div>
 
     <button type="submit" class="btn btn-primary mt-2">Guardar</button>
