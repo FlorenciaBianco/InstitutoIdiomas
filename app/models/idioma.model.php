@@ -51,7 +51,7 @@ class IdiomaModel{
     }
 
     private function uploadImage($image){
-        $target = "img/" . uniqid("", true) . "." . strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
+        $target = "docs/img/" . uniqid("", true) . "." . strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
        
         move_uploaded_file($image['tmp_name'], $target);
         return $target;
