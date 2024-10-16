@@ -65,8 +65,7 @@ switch ($params[0]) {
         }
         break;  
     case 'Modificar':
-        //  sessionAuthMiddleware($res);
-        //  verifyAuthMiddleware($res);  
+          
         switch ($params[1]){
              case'idioma':
              $controller = new IdiomaController();
