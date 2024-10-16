@@ -13,12 +13,13 @@
         <div class="col-3">
             <div class="form-group">
                 <label>Seleccione idioma</label>
-                <select required name="idioma" class="form-control"
-                <?php if($profesor): ?> 
-                    value="<?= htmlspecialchars($profesor->idioma) ?>"
-                <?php endif ?> 
-                    <?php foreach($indiceIdiomas as $id => $idioma): ?>
-                        <option value="<?= $id ?>"><?= $idioma ?></option>
+                <select required name="idioma" class="form-control">
+                        
+                    <?php foreach($indiceIdiomas as $idioma => $id_idioma): ?>
+                        <option value = "<? = $id_idioma?>"
+                        <?php if ($profesor):?> 
+                            <option value = "<?$profesor->$id_idioma?>"selected> <?php endif; ?>><?htmlspecialchars($id_idioma) ?>
+                        </option>
                     <?php endforeach ?>
                 </select>
             </div>

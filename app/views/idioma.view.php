@@ -6,7 +6,7 @@ class IdiomaView {
         require_once 'templates/lista_idiomas.phtml';  
     }
 
-    public function showAddForm(){
+    public function showAddForm($idioma = null){
         require_once 'templates/form_alta_idiomas.phtml';  
     }
 

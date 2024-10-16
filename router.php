@@ -6,7 +6,7 @@ require_once 'app/controllers/profesor.controller.php';
 require_once 'app/controllers/idioma.controller.php';
 require_once 'app/controllers/auth.controller.php';
 
-// base_url para redirecciones y base tag
+
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 $res = new Response(); 
@@ -38,7 +38,7 @@ switch ($params[0]) {
         break;
     case 'agregar':
          sessionAuthMiddleware($res);
-         verifyAuthMiddleware($res);  /// Verifica que el usuario este logueado o redirige al login ///
+         verifyAuthMiddleware($res); 
         switch ($params[1]){
             case'idioma':
             $controller = new IdiomaController();
@@ -65,7 +65,8 @@ switch ($params[0]) {
         }
         break;  
     case 'Modificar':
-          
+        sessionAuthMiddleware($res);
+        verifyAuthMiddleware($res); 
         switch ($params[1]){
              case'idioma':
              $controller = new IdiomaController();

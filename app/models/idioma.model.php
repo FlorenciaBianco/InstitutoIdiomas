@@ -27,10 +27,13 @@ class IdiomaModel{
         return $idioma;
     }
 
-    public function insert($nombre, $descripcion, $modulos){
-        
-        $query = $this->db->prepare('INSERT INTO idioma (nombre, descripcion, modulos) VALUES (?, ?, ?)');
-        $query->execute([$nombre, $descripcion, $modulos]);
+    public function insert($nombre, $descripcion, $modulos, $imagen = null){
+        $pathImg = null;
+        if ($imagen){
+            $pathImg = $this->uploadImage($imagen);
+        }
+        $query = $this->db->prepare('INSERT INTO idioma (nombre, descripcion, modulos, imagen) VALUES(?,?,?,?)');
+        $query->execute([$nombre, $descripcion, $modulos, $pathImg]);
 
         $id = $this->db->lastInsertId();
     
@@ -47,6 +50,14 @@ class IdiomaModel{
         $query->execute([$nombre,$descripcion,$modulos,$id]);
     }
 
+    private function uploadImage($image){
+        $target = "img/" . uniqid("", true) . "." . strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
+       
+        move_uploaded_file($image['tmp_name'], $target);
+        return $target;
+    }
+
+ 
 }
 
 

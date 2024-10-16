@@ -110,7 +110,7 @@
         
             $id = $this->model->update($nombre, $telefono, $email, $id_idioma);
     
-            header('Location: ' . BASE_URL "profesor");
+            header('Location: ' . BASE_URL ."profesor");
         }
      
 
