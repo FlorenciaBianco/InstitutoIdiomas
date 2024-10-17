@@ -12,14 +12,11 @@
 
         <div class="col-3">
             <div class="form-group">
-                <label>Seleccione idioma</label>
+                <label>Seleccione Idioma</label>
                 <select required name="idioma" class="form-control">
-                        
-                    <?php foreach($indiceIdiomas as $idioma => $id_idioma): ?>
-                        <option value = "<? = $id_idioma?>"
-                        <?php if ($profesor):?> 
-                            <option value = "<?$profesor->$id_idioma?>"selected> <?php endif; ?>><?htmlspecialchars($id_idioma) ?>
-                        </option>
+                    <option>Elija un Idioma</option>
+                    <?php foreach($indiceIdiomas as $id_idioma => $idioma): ?>
+                        <option value = "<?= $id_idioma ?>" <?php if ($profesor && $profesor->id_idioma==$id_idioma):?> selected <?php endif; ?>><?= htmlspecialchars($idioma) ?></option>
                     <?php endforeach ?>
                 </select>
             </div>
@@ -27,14 +24,11 @@
     </div>
     <div class="form-group">
         <label>Telefono</label>
-        <textarea name="telefono" class="form-control" rows="3"><?php if($profesor): ?><?= htmlspecialchars($profesor->telefono) ?><?php endif ?>
-        </textarea>
+        <textarea name="telefono" class="form-control" rows="3"><?php if($profesor): ?><?= htmlspecialchars($profesor->telefono) ?><?php endif ?></textarea>
     </div>
     <div class="form-group">
         <label>Email</label>
-        <textarea name="email" class="form-control" rows="3"><?php if($profesor): ?><?= htmlspecialchars($profesor->email) ?><?php endif ?>
-
-        </textarea>
+        <textarea name="email" class="form-control" rows="3"><?php if($profesor): ?><?= htmlspecialchars($profesor->email) ?><?php endif ?></textarea>
     </div>
 
     <button type="submit" class="btn btn-primary mt-2">Guardar</button>

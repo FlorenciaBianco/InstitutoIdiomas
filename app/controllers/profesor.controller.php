@@ -15,7 +15,7 @@
         public function add(){
             if($_SERVER['REQUEST_METHOD']=='GET'){
                 $indiceIdiomas = $this->getLanguageIndex();
-                return $this->view->showAddForm($indiceIdiomas);
+                return $this->view->showAddForm(null, $indiceIdiomas);
             }
 
             if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {
@@ -86,7 +86,7 @@
             }
             if($_SERVER['REQUEST_METHOD']=='GET'){
                 $profesor = $this->model->getById($id);
-                return $this->view->showUpdateForm($profesor);
+                return $this->view->showUpdateForm($profesor,$this->getLanguageIndex());
             }
 
             if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {

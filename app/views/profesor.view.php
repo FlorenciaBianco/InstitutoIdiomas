@@ -19,14 +19,14 @@ class ProfesorView{
       
     }
 
-    public function showAddForm($indiceIdiomas){
+    public function showAddForm($profesor=null, $indiceIdiomas){
         require_once 'templates/form_alta_profesor.phtml';  
     }
 
     public function showError($error) {
         echo $error;
     }
-    public function showUpdateForm($profesor) {
+    public function showUpdateForm($profesor, $indiceIdiomas) {
         require_once 'templates/form_alta_profesor.phtml';
     }
 
