@@ -31,6 +31,7 @@ require_once 'config.php';
                 );
                 CREATE TABLE usuario (
                     id INT AUTO_INCREMENT PRIMARY KEY,
+                    nombre VARCHAR (40) NOT NULL,
                     email VARCHAR(50) NOT NULL,
                     password VARCHAR (50) NOT NULL
                 );

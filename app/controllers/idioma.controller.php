@@ -21,7 +21,6 @@
             return $this->view->show($profesores);
         }
         public function showCategoria($nombre){
-            //// $idioma = $this->model->getById($nombre);
             $profesores = $this->model->getById($nombre);
             return $this->view->show($profesor);
         }
@@ -70,6 +69,7 @@
             }
             if ($_SERVER['REQUEST_METHOD']=='GET'){
                 $idioma = $this->model->getById($id);
+
                 return $this->view->showUpdateForm($idioma);
             }
             if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {
