@@ -1,16 +1,23 @@
 <?php
     require_once 'app/models/profesor.model.php';
+    require_once 'app/models/deploy.model.php';
     require_once 'app/views/profesor.view.php';
 
     class ProfesorController {
         private $model;
         private $view;
-
+        private $deployModel;
+        
         public function __construct (){
             $this->model = new ProfesorModel();
             $this->idiomaModel = new IdiomaModel();
             $this->view = new ProfesorView(); 
+            $this->deployModel = new DeployModel();
         }
+    
+        public function deploy(){
+            $this->deployModel->_deploy();       
+            }
 
         public function add(){
             if($_SERVER['REQUEST_METHOD']=='GET'){

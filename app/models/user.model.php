@@ -8,7 +8,6 @@ require_once 'app/models/deploy.model.php';
         
         public function __construct() {
             $this->db = new PDO("mysql:host=".MYSQL_HOST .";dbname=".MYSQL_DB.";charset=utf8", MYSQL_USER, MYSQL_PASS);
-            $this->deploy();
         }
 
         public function getUserByEmail($email) {

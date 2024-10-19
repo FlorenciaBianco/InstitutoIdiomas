@@ -6,7 +6,7 @@ require_once 'config.php';
 
         public function __construct() {
             $this->db = new PDO("mysql:host=".MYSQL_HOST .";dbname=".MYSQL_DB.";charset=utf8", MYSQL_USER, MYSQL_PASS);
-            $this->deploy();
+            $this->_deploy();
         }
         private function _deploy() {
             $query = $this->db->query('SHOW TABLES');

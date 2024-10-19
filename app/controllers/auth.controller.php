@@ -1,14 +1,21 @@
 <?php
-require_once './app/models/user.model.php';
-require_once './app/views/auth.view.php';
+require_once 'app/models/user.model.php';
+require_once 'app/models/deploy.model.php';
+require_once 'app/views/auth.view.php';
 
 class AuthController {
     private $model;
     private $view;
+    private $deployModel;
 
     public function __construct() {
         $this->model = new UserModel();
         $this->view = new AuthView();
+        $this->deployModel = new DeployModel();
+    }
+
+    public function deploy(){
+        $this->deployModel->_deploy();       
     }
 
     public function showLogin() {
