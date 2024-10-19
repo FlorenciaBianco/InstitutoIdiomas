@@ -99,8 +99,11 @@
             header('Location: ' . BASE_URL."idiomas");
             
         }
+        public function showHome(){
+            $idiomas = $this->model->getAll();
+            return $this->view->showHome($idiomas);
 
-        // public function showHome()
+        }
      
 
 

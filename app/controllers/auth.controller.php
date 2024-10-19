@@ -13,10 +13,11 @@ class AuthController {
         $this->view = new AuthView();
         $this->deployModel = new DeployModel();
     }
-
+    
     public function deploy(){
         $this->deployModel->_deploy();       
     }
+    
 
     public function showLogin() {
         return $this->view->showLogin();

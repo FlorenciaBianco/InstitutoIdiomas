@@ -25,5 +25,8 @@ class IdiomaView {
     public function showError($error) {
         echo $error;
     }
+    public function showHome($idiomas){
+        require_once 'templates/home.phtml';
+    }
 
 }

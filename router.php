@@ -21,15 +21,15 @@ $params = explode('/', $action);
 switch ($params[0]) {
     case 'profesores':
         if(isset($params[1])){
-            $controller = new ProfesorController();
+            $controller = new ProfesorController($res);
             $controller->showByIdioma($params[1]);
         }else {
-            $controller = new ProfesorController();
+            $controller = new ProfesorController($res);
             $controller->showList();
         }
         break;
     case 'profesor':
-        $controller = new ProfesorController();
+        $controller = new ProfesorController($res);
         $controller->show($params[1]);
         break;
     case 'idiomas':
@@ -45,7 +45,7 @@ switch ($params[0]) {
             $controller->add();
             break;
             case'profesor':
-            $controller = new ProfesorController();
+            $controller = new ProfesorController($res);
             $controller->add();
             break;
         }
@@ -59,7 +59,7 @@ switch ($params[0]) {
             $controller->delete($params[2]);
             break;
             case'profesor':
-            $controller = new ProfesorController();
+            $controller = new ProfesorController($res);
             $controller->delete($params[2]);
             break;
         }
@@ -73,7 +73,7 @@ switch ($params[0]) {
              $controller->update($params[2]);
              break;
              case'profesor':
-             $controller = new ProfesorController();
+             $controller = new ProfesorController($res);
              $controller->update($params[2]);
             break;
             }
@@ -90,10 +90,10 @@ switch ($params[0]) {
             $controller = new AuthController();
             $controller->logout();
             break;
-    // case 'home':
-    //         $controller = new IdiomaController($res);
-    //         $controller->showHome();
-    //         break;   
+    case 'home':
+             $controller = new IdiomaController($res);
+             $controller->showHome();
+             break;   
     default: 
         echo('404 Page not found'); 
         break;

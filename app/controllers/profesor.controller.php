@@ -8,10 +8,10 @@
         private $view;
         private $deployModel;
         
-        public function __construct (){
+        public function __construct ($res){
             $this->model = new ProfesorModel();
             $this->idiomaModel = new IdiomaModel();
-            $this->view = new ProfesorView(); 
+            $this->view = new ProfesorView($res->user); 
             $this->deployModel = new DeployModel();
         }
     
