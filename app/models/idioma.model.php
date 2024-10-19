@@ -46,14 +46,22 @@ class IdiomaModel{
         $query->execute([$id]); 
     }
 
-    public function update($id, $nombre, $descripcion, $modulos){
-        $query = $this->db->prepare ('UPDATE idioma SET nombre = ?, descripcion = ?, modulos = ? WHERE id_idioma = ?');
-        $query->execute([$nombre,$descripcion,$modulos,$id]);
+    public function update($id, $nombre, $descripcion, $modulos, $image = null){
+        if(empty($image)){
+            $query = $this->db->prepare('UPDATE idioma SET nombre = ?, descripcion = ?, modulos = ? WHERE id_idioma = ?');
+            $query->execute([$nombre, $descripcion, $modulos, $id]);
+        } else{
+            $pathImg = $this->uploadImage($image);
+            $query = $this->db->prepare('UPDATE idioma SET nombre = ?, descripcion = ?, modulos = ?, imagen = ? WHERE id_idioma = ?');
+            $query->execute([$nombre, $descripcion, $modulos, $pathImg, $id]);
+        }
+
     }
 
     private function uploadImage($image){
         $target = "docs/img/" . uniqid("", true) . "." . strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
-        move_uploaded_file($image['tmp_name'], $target);
+        $success =move_uploaded_file($image['tmp_name'], $target);
+       
         return $target;
     }
 

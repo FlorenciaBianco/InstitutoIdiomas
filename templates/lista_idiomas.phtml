@@ -8,7 +8,7 @@
             <div class="col-5"></div>
             <div class="col-2">
                 <div class= "button my-2">
-                    <a href="/WEB2/TPE/agregar/idioma" type='button' class='btn btn-success'>Agregar Idioma</a>
+                    <a href="<?= BASE_URL ?>agregar/idioma" type='button' class='btn btn-success'>Agregar Idioma</a>
                 </div>
             </div>
         </div>
@@ -25,9 +25,9 @@
                     </div>
 
                     <div class= "ml-auto">
-                        <a href="/WEB2/TPE/profesores/<?= $idioma->id_idioma ?>" type='button' class='btn btn-warning'>Profesores</a>
-                        <a href="/WEB2/TPE/Modificar/idioma/<?= $idioma->id_idioma ?>" type='button' class='btn btn-secondary'>Modificar</a>
-                        <a href="/WEB2/TPE/eliminar/idioma/<?= $idioma->id_idioma ?>" type='button' class='btn btn-danger'>Eliminar</a>
+                        <a href="<?= BASE_URL ?>profesores/<?= $idioma->id_idioma ?>" type='button' class='btn btn-warning'>Profesores</a>
+                        <a href="<?= BASE_URL ?>Modificar/idioma/<?= $idioma->id_idioma ?>" type='button' class='btn btn-secondary'>Modificar</a>
+                        <a href="<?= BASE_URL ?>eliminar/idioma/<?= $idioma->id_idioma ?>" type='button' class='btn btn-danger'>Eliminar</a>
                     </div>
                     
                 </li>

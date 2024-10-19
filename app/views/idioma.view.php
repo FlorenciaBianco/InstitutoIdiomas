@@ -29,4 +29,5 @@ class IdiomaView {
         require_once 'templates/home.phtml';
     }
 
+
 }

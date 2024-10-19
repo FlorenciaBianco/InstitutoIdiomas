@@ -33,8 +33,10 @@ background-repeat: no-repeat">
             <div class="col-4"></div>
             <div class="col-4">
                 <div class="form-group">
-                    <label>Imagen</label>
-                    <input type="file" name="imput_name" id="imageToUpload">
+                    <?php if($idioma): ?> 
+                        <img src="<?= BASE_URL.$idioma->imagen ?>"/>
+                    <?php endif ?> 
+                    <input type="file" name="input_name"/>                
                 </div>
             </div>
             <div class="col-4"></div>

@@ -51,8 +51,8 @@
             $descripcion = $_POST['descripcion'];
             $modulos= $_POST['modulos'];
 
-            if($_FILES['imput_name']['type'] == "image/jpg" || $_FILES['imput_name']['type'] == "image/jpeg" || $_FILES['imput_name']['type'] == "image/png"){ 
-                $id = $this->model->insert($nombre, $descripcion, $modulos, $_FILES['imput_name']);
+            if($_FILES['input_name']['type'] == "image/jpg" || $_FILES['input_name']['type'] == "image/jpeg" || $_FILES['input_name']['type'] == "image/png"){ 
+                $id = $this->model->insert($nombre, $descripcion, $modulos, $_FILES['input_name']);
             } else {
                 $id = $this->model->insert($nombre, $descripcion, $modulos);
             }
@@ -77,24 +77,28 @@
             }
             if ($_SERVER['REQUEST_METHOD']=='GET'){
                 $idioma = $this->model->getById($id);
-
                 return $this->view->showUpdateForm($idioma);
             }
             if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {
                 return $this->view->showError('Falta completar el nombre del idioma');
             }
+
             if (!isset($_POST['descripcion']) || empty($_POST['descripcion'])) {
                 return $this->view->showError('Falta completar la descripcion');
             }
+
             if (!isset($_POST['modulos']) || empty($_POST['modulos'])) {
                 return $this->view->showError('Falta completar el modulos');
             }
-           
             $nombre = $_POST['nombre'];
             $descripcion = $_POST['descripcion'];
             $modulos= $_POST['modulos'];
-           
-            $id = $this->model->update($id, $nombre, $descripcion, $modulos);
+
+            if($_FILES['input_name']['type'] == "image/jpg" || $_FILES['input_name']['type'] == "image/jpeg" || $_FILES['input_name']['type'] == "image/png"){ 
+                $id = $this->model->update($id, $nombre, $descripcion, $modulos, $_FILES['input_name']);
+            } else {
+                $id = $this->model->update($id, $nombre, $descripcion, $modulos);
+            }
 
             header('Location: ' . BASE_URL."idiomas");
             
@@ -102,10 +106,7 @@
         public function showHome(){
             $idiomas = $this->model->getAll();
             return $this->view->showHome($idiomas);
-
-        }
+         }
      
-
-
-        
     }
+    
