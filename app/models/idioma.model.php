@@ -1,13 +1,13 @@
 <?php
-
+require_once 'config.php';
+require_once 'app/models/deploy.model.php';
 class IdiomaModel{
 
     private $db;
 
     public function __construct(){ 
-        $this->db = new PDO('mysql:host=localhost;dbname=InstitutoIdiomas;charset=utf8', 'root', '');
+        $this->db = new PDO("mysql:host=".MYSQL_HOST .";dbname=".MYSQL_DB.";charset=utf8", MYSQL_USER, MYSQL_PASS);
     }
-
     public function getAll(){    
         $query = $this->db->prepare( 'SELECT * FROM  idioma');
         $query->execute();
@@ -30,6 +30,7 @@ class IdiomaModel{
     public function insert($nombre, $descripcion, $modulos, $imagen = null){
         $pathImg = null;
         if ($imagen){
+            
             $pathImg = $this->uploadImage($imagen);
         }
         $query = $this->db->prepare('INSERT INTO idioma (nombre, descripcion, modulos, imagen) VALUES(?,?,?,?)');
@@ -52,7 +53,6 @@ class IdiomaModel{
 
     private function uploadImage($image){
         $target = "docs/img/" . uniqid("", true) . "." . strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
-       
         move_uploaded_file($image['tmp_name'], $target);
         return $target;
     }

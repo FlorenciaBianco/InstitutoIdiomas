@@ -1,11 +1,13 @@
 <?php
+require_once 'config.php';
+require_once 'app/models/deploy.model.php';
 
 class ProfesorModel {
     private $db;
 
     public function __construct (){
-        $this->db = new PDO('mysql:host=localhost;dbname=InstitutoIdiomas;charset=utf8', 'root', '');
-        }
+        $this->db = new PDO("mysql:host=".MYSQL_HOST .";dbname=".MYSQL_DB.";charset=utf8", MYSQL_USER, MYSQL_PASS);
+    }
     
     public function getAll() {
         $query = $this->db->prepare('SELECT * FROM profesor');
@@ -43,9 +45,14 @@ class ProfesorModel {
         return $profesores;
             }
 
-    public function insert ($nombre, $telefono, $email, $id_idioma){
-        $query = $this->db->prepare('INSERT INTO profesor(nombre, telefono, email, id_idioma) VALUES (?, ?, ?, ?)');
-        $query->execute([$nombre, $telefono, $email, $id_idioma]);
+    public function insert ($nombre, $telefono, $email, $id_idioma, $imagen = null){
+        $pathImg = null;
+        
+        if ($imagen){
+            $pathImg = $this->uploadImage($imagen);
+        }
+        $query = $this->db->prepare('INSERT INTO profesor (nombre, telefono, email, id_idioma, imagen) VALUES (?,?,?,?,?)');
+        $query->execute([$nombre, $telefono, $email, $id_idioma, $pathImg]);
 
         $id = $this->db->lastInsertId();
     
@@ -62,6 +69,13 @@ class ProfesorModel {
         $query->execute([$nombre,$telefono,$email,$id]);
 
         }
+        private function uploadImage($image){
+            $target = "docs/img/" . uniqid("", true) . "." . strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
+            move_uploaded_file($image['tmp_name'], $target);
+            
+            return $target;
+        }
+        
 
 
 }

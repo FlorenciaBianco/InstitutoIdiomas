@@ -1,15 +1,22 @@
 <?php
     require_once 'app/models/idioma.model.php';
+    require_once 'app/models/deploy.model.php';
     require_once 'app/views/idioma.view.php';
     
 
     class IdiomaController {
         private $model;
         private $view;
+        private $deployModel;
 
         public function __construct (){
             $this->model = new IdiomaModel();
             $this->view = new IdiomaView(); 
+            $this->deployModel = new DeployModel();
+        }
+    
+        public function deploy(){
+            $this->deployModel->_deploy();       
         }
 
         public function showList() {
@@ -21,7 +28,6 @@
             return $this->view->show($profesores);
         }
         public function showCategoria($nombre){
-            //// $idioma = $this->model->getById($nombre);
             $profesores = $this->model->getById($nombre);
             return $this->view->show($profesor);
         }
@@ -70,6 +76,7 @@
             }
             if ($_SERVER['REQUEST_METHOD']=='GET'){
                 $idioma = $this->model->getById($id);
+
                 return $this->view->showUpdateForm($idioma);
             }
             if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {

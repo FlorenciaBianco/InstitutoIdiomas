@@ -6,7 +6,7 @@ require_once 'config.php';
 
         public function __construct() {
             $this->db = new PDO("mysql:host=".MYSQL_HOST .";dbname=".MYSQL_DB.";charset=utf8", MYSQL_USER, MYSQL_PASS);
-            $this->deploy();
+            $this->_deploy();
         }
         private function _deploy() {
             $query = $this->db->query('SHOW TABLES');
@@ -31,6 +31,7 @@ require_once 'config.php';
                 );
                 CREATE TABLE usuario (
                     id INT AUTO_INCREMENT PRIMARY KEY,
+                    nombre VARCHAR (40) NOT NULL,
                     email VARCHAR(50) NOT NULL,
                     password VARCHAR (50) NOT NULL
                 );

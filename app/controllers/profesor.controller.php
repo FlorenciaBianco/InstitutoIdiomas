@@ -1,16 +1,23 @@
 <?php
     require_once 'app/models/profesor.model.php';
+    require_once 'app/models/deploy.model.php';
     require_once 'app/views/profesor.view.php';
 
     class ProfesorController {
         private $model;
         private $view;
-
+        private $deployModel;
+        
         public function __construct (){
             $this->model = new ProfesorModel();
             $this->idiomaModel = new IdiomaModel();
             $this->view = new ProfesorView(); 
+            $this->deployModel = new DeployModel();
         }
+    
+        public function deploy(){
+            $this->deployModel->_deploy();       
+            }
 
         public function add(){
             if($_SERVER['REQUEST_METHOD']=='GET'){
@@ -36,9 +43,13 @@
             $email = $_POST['email'];
             $telefono= $_POST['telefono'];
             $id_idioma = $_POST['idioma'];
-        
-            $id = $this->model->insert($nombre, $telefono, $email, $id_idioma);
+            
+            if($_FILES['imput_name']['type'] == "image/jpg" || $_FILES['imput_name']['type'] == "image/jpeg" || $_FILES['imput_name']['type'] == "image/png"){ 
+                $id = $this->model->insert($nombre, $telefono, $email, $id_idioma, $_FILES['imput_name']);
 
+            } else {
+                $id = $this->model->insert($nombre, $telefono, $email, $id_idioma);
+            }
             header('Location: ' . BASE_URL."profesores");
         }
 
