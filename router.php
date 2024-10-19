@@ -33,7 +33,7 @@ switch ($params[0]) {
         $controller->show($params[1]);
         break;
     case 'idiomas':
-        $controller = new IdiomaController();
+        $controller = new IdiomaController($res);
         $controller->showList();
         break;
     case 'agregar':
@@ -41,7 +41,7 @@ switch ($params[0]) {
          verifyAuthMiddleware($res); 
         switch ($params[1]){
             case'idioma':
-            $controller = new IdiomaController();
+            $controller = new IdiomaController($res);
             $controller->add();
             break;
             case'profesor':
@@ -55,7 +55,7 @@ switch ($params[0]) {
          verifyAuthMiddleware($res);  
         switch ($params[1]){
             case'idioma':
-            $controller = new IdiomaController();
+            $controller = new IdiomaController($res);
             $controller->delete($params[2]);
             break;
             case'profesor':
@@ -69,7 +69,7 @@ switch ($params[0]) {
         verifyAuthMiddleware($res); 
         switch ($params[1]){
              case'idioma':
-             $controller = new IdiomaController();
+             $controller = new IdiomaController($res);
              $controller->update($params[2]);
              break;
              case'profesor':
@@ -88,7 +88,12 @@ switch ($params[0]) {
             break;
     case 'logout':
             $controller = new AuthController();
-            $controller->logout();   
+            $controller->logout();
+            break;
+    // case 'home':
+    //         $controller = new IdiomaController($res);
+    //         $controller->showHome();
+    //         break;   
     default: 
         echo('404 Page not found'); 
         break;

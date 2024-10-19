@@ -9,7 +9,7 @@
         private $view;
         private $deployModel;
 
-        public function __construct (){
+        public function __construct ($res){
             $this->model = new IdiomaModel();
             $this->view = new IdiomaView(); 
             $this->deployModel = new DeployModel();
@@ -17,6 +17,7 @@
     
         public function deploy(){
             $this->deployModel->_deploy();       
+            $this->view = new IdiomaView($res->user); 
         }
 
         public function showList() {
@@ -98,6 +99,8 @@
             header('Location: ' . BASE_URL."idiomas");
             
         }
+
+        // public function showHome()
      
 
 
