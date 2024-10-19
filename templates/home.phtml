@@ -1,20 +1,20 @@
 <?php require 'templates/layouts/header.phtml' ?>
 
-<div class="container text-center my-4 d-flex flex-column" style="background-color: #f6f6f6">
-    <div class="my-4 d-flex flex-wrap align-items-center justify-content-center" style="gap: 20px;">
-        <?php foreach($idiomas as $idioma): ?>
-            <div class="card" style="width: 18rem; border: 1px solid #ddd; padding: 10px; background-color: #fff;">
-                <?php if ($idioma->imagen): ?>
-                    <img src="<?= BASE_URL.$idioma->imagen ?>" alt="Imagen del idioma <?= htmlspecialchars($idioma->nombre) ?>" style="width: 100%; height: auto;">
-                <?php endif ?>
-                <div class="card-body">
-                    <h5 class="card-title"><?= htmlspecialchars($idioma->nombre) ?></h5>
-                    <p class="card-text"><?= substr($idioma->descripcion, 0, 50) ?></p>
-                    <a href="/WEB2/TPE/profesores/<?= $idioma->id_idioma ?>" class="card-link">Profesores</a>  
+    <div class="container text-center my-4 d-flex flex-column" style="background-color: #f6f6f6">
+        <div class="my-4 d-flex flex-wrap align-items-center justify-content-center" style="gap: 20px;">
+            <?php foreach($idiomas as $idioma): ?>
+                <div class="card" style="width: 18rem; border: 1px solid #ddd; padding: 10px; background-color: #fff;">
+                    <?php if ($idioma->imagen): ?>
+                        <img src="<?= BASE_URL.$idioma->imagen ?>" alt="Imagen del idioma <?= htmlspecialchars($idioma->nombre) ?>" style="width: 100%; height: auto;">
+                    <?php endif ?>
+                    <div class="card-body">
+                        <h5 class="card-title"><?= htmlspecialchars($idioma->nombre) ?></h5>
+                        <p class="card-text"><?= substr($idioma->descripcion, 0, 50) ?></p>
+                        <a href="/WEB2/TPE/profesores/<?= $idioma->id_idioma ?>" class="card-link">Profesores</a>  
+                    </div>
                 </div>
-            </div>
-        <?php endforeach ?>
+            <?php endforeach ?>
+        </div>
     </div>
-</div>
 
 <?php require 'templates/layouts/footer.phtml' ?>
