@@ -17,16 +17,6 @@ class ProfesorModel {
     
         return $profesores;
         }
-
-    public function getByName ($nombre) {
-        $query = $this->db->prepare('SELECT * FROM profesor WHERE nombre = ?');
-        $query->execute([$nombre]);
-
-        $profesor = $query->fetch(PDO::FETCH_OBJ);
-
-        return $profesor;
-        }
-        
     public function getById ($id) {
         $query = $this->db->prepare('SELECT * FROM profesor WHERE id = ?');
         $query->execute([$id]);
@@ -64,10 +54,16 @@ class ProfesorModel {
         $query->execute([$id]); 
         }
 
-    public function update($nombre, $telefono, $email, $id_idioma){
-        $query = $this->db->prepare('UPDATE profesor SET nombre = ?, telefono = ?, email = ? id_idioma = ? WHERE id = ?');
-        $query->execute([$nombre,$telefono,$email,$id]);
-
+    public function update($id, $nombre, $telefono, $email, $id_idioma, $image = null){
+       if(empty($image)){
+        $query = $this->db->prepare('UPDATE profesor SET nombre = ?, telefono = ?, email = ?, id_idioma = ? WHERE id = ?');
+        $query->execute([$nombre, $telefono, $email, $id_idioma, $id]);
+       }
+       else{
+        $pathImg = $this->uploadImage ($image);
+        $query = $this->db->prepare('UPDATE profesor SET nombre = ?, telefono = ?, email = ?, id_idioma = ?, imagen = ? WHERE id = ?');
+        $query->execute([$nombre, $telefono, $email, $id_idioma, $pathImg, $id]);
+       }
         }
         private function uploadImage($image){
             $target = "docs/img/" . uniqid("", true) . "." . strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));

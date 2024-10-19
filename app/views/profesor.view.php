@@ -13,12 +13,12 @@ class ProfesorView{
     }
 
     public function show($profesor){
-        var_dump($profesor);
+        require_once 'templates/profesor.phtml';
 
     }
 
     public function showByIdioma($profesores){
-        var_dump($profesores);
+       require_once 'templates/lista_profesores.phtml';
       
     }
 

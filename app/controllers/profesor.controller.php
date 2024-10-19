@@ -68,8 +68,8 @@
             return $indiceIdiomas;
         }
 
-        public function show($nombre){
-            $profesor = $this->model->getByName($nombre);
+        public function show($id){
+            $profesor = $this->model->getById($id);
             return $this->view->show($profesor);
         }
 
@@ -119,9 +119,14 @@
             $telefono= $_POST['telefono'];
             $id_idioma = $_POST['idioma'];
         
-            $id = $this->model->update($nombre, $telefono, $email, $id_idioma);
+            if($_FILES['imput_name']['type'] == "image/jpg" || $_FILES['imput_name']['type'] == "image/jpeg" || $_FILES['imput_name']['type'] == "image/png"){ 
+                $id = $this->model->update($id,$nombre, $telefono, $email, $id_idioma, $_FILES['imput_name']);
+
+            } else {
+                $id = $this->model->update($id,$nombre, $telefono, $email, $id_idioma);
+            }
     
-            header('Location: ' . BASE_URL ."profesor");
+            header('Location: ' . BASE_URL ."profesores");
         }
      
 
