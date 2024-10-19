@@ -11,13 +11,13 @@
 
         public function __construct ($res){
             $this->model = new IdiomaModel();
-            $this->view = new IdiomaView(); 
+            $this->view = new IdiomaView($res->user); 
             $this->deployModel = new DeployModel();
         }
     
         public function deploy(){
             $this->deployModel->_deploy();       
-            $this->view = new IdiomaView($res->user); 
+        
         }
 
         public function showList() {
