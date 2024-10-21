@@ -3,7 +3,6 @@
     require_once 'app/models/deploy.model.php';
     require_once 'app/views/idioma.view.php';
     
-
     class IdiomaController {
         private $model;
         private $view;
@@ -24,10 +23,12 @@
             $idiomas = $this->model->getAll();
             return $this->view->showList($idiomas);
         }
+
         public function show($nombre){
             $profesores = $this->model->getById($nombre);
             return $this->view->show($profesores);
         }
+
         public function showCategoria($nombre){
             $profesores = $this->model->getById($nombre);
             return $this->view->show($profesor);
@@ -103,10 +104,11 @@
             header('Location: ' . BASE_URL."idiomas");
             
         }
+
         public function showHome(){
             $idiomas = $this->model->getAll();
             return $this->view->showHome($idiomas);
-         }
+        }
      
     }
     

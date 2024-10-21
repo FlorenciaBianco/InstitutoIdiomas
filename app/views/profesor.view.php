@@ -12,12 +12,12 @@ class ProfesorView{
 
     }
 
-    public function show($profesor){
+    public function show($profesor, $indiceIdiomas){
         require_once 'templates/profesor.phtml';
 
     }
 
-    public function showByIdioma($profesores){
+    public function showByIdioma($profesores, $indiceIdiomas){
        require_once 'templates/lista_profesores.phtml';
       
     }

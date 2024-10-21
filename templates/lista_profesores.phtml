@@ -7,7 +7,7 @@
             <div class="col-5"></div>
             <div class="col-2">
                 <div class= "button my-2">
-                    <a href="/WEB2/TPE/agregar/profesor" type='button' class='btn btn-success'>Agregar Profesor</a>
+                    <a href="<?= BASE_URL?>agregar/profesor" type='button' class='btn btn-success'>Agregar Profesor</a>
                 </div>
             </div>
         </div>
@@ -19,11 +19,11 @@
                         <img src="<?= BASE_URL.$profesor->imagen ?>"/>
                     <?php endif ?>
                     <div class="label">
-                        <b><?= htmlspecialchars($profesor->nombre) ?></b> | <?=($profesor->telefono)?> | (<?= $profesor->email ?>)
+                        <a href="<?= BASE_URL ?>profesor/<?= $profesor->id?>"><b><?= htmlspecialchars($profesor->nombre) ?></b></a> | <?=($indiceIdiomas[$profesor->id_idioma])?> | <?=($profesor->telefono)?> | <?= ($profesor->email) ?> 
                     </div>
                     <div class= "ml-auto">
-                        <a href="/WEB2/TPE/Modificar/profesor/<?= $profesor->id ?>" type='button' class='btn btn-secondary'>Modificar</a>
-                        <a href="/WEB2/TPE/eliminar/profesor/<?= $profesor->id ?>" type='button' class='btn btn-danger'>Eliminar</a>
+                        <a href="<?= BASE_URL?>Modificar/profesor/<?= $profesor->id ?>" type='button' class='btn btn-secondary'>Modificar</a>
+                        <a href="<?= BASE_URL?>eliminar/profesor/<?= $profesor->id ?>" type='button' class='btn btn-danger'>Eliminar</a>
                     </div> 
                 
                 </li>

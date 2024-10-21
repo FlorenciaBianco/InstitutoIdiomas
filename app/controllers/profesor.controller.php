@@ -55,7 +55,6 @@
 
         public function showList() {
             $profesores = $this->model->getAll();
-
             return $this->view->showList($profesores, $this->getLanguageIndex());
         }
 
@@ -70,12 +69,12 @@
 
         public function show($id){
             $profesor = $this->model->getById($id);
-            return $this->view->show($profesor);
+            return $this->view->show($profesor, $this->getLanguageIndex());
         }
 
         public function showByIdioma($id){
             $profesores = $this->model->getByIdioma($id);
-            return $this->view->showByIdioma($profesores);
+            return $this->view->showByIdioma($profesores, $this->getLanguageIndex());
         }
 
         public function delete($id) {

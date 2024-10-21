@@ -20,20 +20,25 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/WEB2/TPE/home">Instituto de idiomas</a>
+                    <a class="nav-link active" aria-current="page" href="<?= BASE_URL ?>home">Instituto de Idiomas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/WEB2/TPE/idiomas">Idiomas</a>
+                    <a class="nav-link" href="<?= BASE_URL ?>idiomas">Idiomas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/WEB2/TPE/profesores">Profesores</a>
+                    <a class="nav-link" href="<?= BASE_URL ?>profesores">Profesores</a>
                 </li>
             </ul>
-            
+
             <?php if ($this->user): ?>
                 <span class= "navbar-text"><?= htmlspecialchars($this->user->email)?></span>
-                <span class="navbar-text"><a class="nav-link" href="/WEB2/TPE/logout">Salir</a></span>
+                <span class="navbar-text"><a class="nav-link" href="<?= BASE_URL ?>logout">Salir</a></span>
+                <?php else :?>
+                    <div>
+                        <a href="<?= BASE_URL ?>showLogin" type='button' class= "btn btn-sm btn-outline-secondary">Iniciar Sesion</a>
+                    </div>
             <?php endif ?>
+
         </div>
     </div>   
 </nav>

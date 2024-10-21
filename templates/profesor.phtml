@@ -17,9 +17,10 @@
             
             <li class="list-group-item">
                 <div class="label">
-                    <b><?= htmlspecialchars($profesor->nombre) ?></b> <br>
-                    <?= htmlspecialchars($profesor->telefono) ?> <br>
-                    <?= htmlspecialchars($profesor->email) ?>
+                    <b>Nombre: <?= htmlspecialchars($profesor->nombre) ?></b> <br>
+                    <b>Idioma: <?= htmlspecialchars($indiceIdiomas[$profesor->id_idioma]) ?></b><br>
+                    Telefono: <?= htmlspecialchars($profesor->telefono) ?> <br>
+                    Email: <?= htmlspecialchars($profesor->email) ?>
                 </div>
             </li>
         </ul>

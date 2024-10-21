@@ -14,10 +14,13 @@ $res = new Response();
 $action = ''; 
 if (!empty( $_GET['action'])) {
     $action = $_GET['action'];
+} else {
+    $action = 'home'; 
 }
 
 $params = explode('/', $action);
 
+sessionAuthMiddleware($res);
 switch ($params[0]) {
     case 'profesores':
         if(isset($params[1])){
@@ -37,8 +40,7 @@ switch ($params[0]) {
         $controller->showList();
         break;
     case 'agregar':
-         sessionAuthMiddleware($res);
-         verifyAuthMiddleware($res); 
+        verifyAuthMiddleware($res); 
         switch ($params[1]){
             case'idioma':
             $controller = new IdiomaController($res);
@@ -51,8 +53,7 @@ switch ($params[0]) {
         }
         break;
     case 'eliminar':
-         sessionAuthMiddleware($res);
-         verifyAuthMiddleware($res);  
+        verifyAuthMiddleware($res);  
         switch ($params[1]){
             case'idioma':
             $controller = new IdiomaController($res);
@@ -65,7 +66,6 @@ switch ($params[0]) {
         }
         break;  
     case 'Modificar':
-        sessionAuthMiddleware($res);
         verifyAuthMiddleware($res); 
         switch ($params[1]){
              case'idioma':
@@ -80,7 +80,7 @@ switch ($params[0]) {
             break; 
     case 'showLogin':
             $controller = new AuthController();
-            $controller->showLogin();
+            $controller->showLogin($res);
             break;
     case 'login':
             $controller = new AuthController();
@@ -91,9 +91,9 @@ switch ($params[0]) {
             $controller->logout();
             break;
     case 'home':
-             $controller = new IdiomaController($res);
-             $controller->showHome();
-             break;   
+            $controller = new IdiomaController($res);
+            $controller->showHome();
+            break;   
     default: 
         echo('404 Page not found'); 
         break;

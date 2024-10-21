@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 16, 2024 at 09:56 PM
+-- Generation Time: Oct 21, 2024 at 04:32 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `InstitutoIdiomas`
 --
+CREATE DATABASE IF NOT EXISTS `InstitutoIdiomas` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `InstitutoIdiomas`;
 
 -- --------------------------------------------------------
 
@@ -32,7 +34,7 @@ CREATE TABLE `Idioma` (
   `nombre` varchar(40) NOT NULL,
   `descripcion` varchar(50) NOT NULL,
   `modulos` int(11) NOT NULL,
-  `imagen` varchar(250) NOT NULL
+  `imagen` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -40,12 +42,10 @@ CREATE TABLE `Idioma` (
 --
 
 INSERT INTO `Idioma` (`id_idioma`, `nombre`, `descripcion`, `modulos`, `imagen`) VALUES
-(1, 'Ingles', 'Tercer idioma del mundo ', 4, ''),
-(2, 'Frances', 'Quinto idioma del mundo', 3, ''),
-(3, 'Italiano', 'Vigesimo idioma del mundo', 3, ''),
-(4, 'Aleman', 'Decimo idioma del mundo', 2, ''),
-(5, 'chilenoo', 'asd', 1, ''),
-(7, 'Hebreo', 'fbhfufbdhbfh', 2, '');
+(1, 'Ingles', 'Lengua de origen Europeo', 4, 'docs/img/6715885208fca7.71171835.png'),
+(3, 'Italiano', 'Lengua precedente del latin', 3, 'docs/img/671587e11cf369.08464002.png'),
+(4, 'Aleman', 'Lengua del grupo germánico', 2, 'docs/img/671588a82c2442.01981511.png'),
+(55, 'Portugués', 'Es una lengua pluricéntrica', 3, 'docs/img/67143f6b47cc56.34888657.jpg');
 
 -- --------------------------------------------------------
 
@@ -67,14 +67,16 @@ CREATE TABLE `Profesor` (
 --
 
 INSERT INTO `Profesor` (`id`, `nombre`, `telefono`, `email`, `id_idioma`, `imagen`) VALUES
-(1, 'Mateo', 123456, 'mateo@idiomas.com.ar', 1, ''),
-(2, 'Florencia', 654321, 'florencia@idiomas.com.ar', 3, ''),
-(9, 'Matias', 192837, 'matias@idiomas.com.ar', 1, ''),
-(10, 'Milagros', 203948, 'milagros@idiomas.com', 2, ''),
-(11, 'Lucia ', 223344, 'lucia@idiomas.com.ar', 4, ''),
-(12, 'Martin', 114477, 'martin@idiomas.com.ar', 1, ''),
-(13, 'pepe', 23232, 's@x.com', 5, ''),
-(15, 'fdsfsd', 1213, 'dzds', 1, '');
+(1, 'Matias', 15336756, 'matias@idiomas.com', 1, 'docs/img/671586227c5889.95956014.png'),
+(2, 'Carolina', 15654321, 'carolina@idiomas.com', 55, 'docs/img/671589a357f297.89609470.png'),
+(9, 'Federico', 15928370, 'federico@idiomas.com', 3, 'docs/img/671586e853cf54.88526497.png'),
+(11, 'Lucia ', 15233445, 'lucia@idiomas.com', 4, 'docs/img/67158650ee19f0.89962640.png'),
+(13, 'Martin', 15807699, 'martin@idiomas.com', 55, 'docs/img/671581b1877884.68963486.png'),
+(15, 'Milagros', 15135698, 'milagros@idiomas.com', 3, 'docs/img/67158111e1e991.58240608.png'),
+(18, 'Florencia', 14563456, 'florencia@idiomas.com', 3, 'docs/img/67157e4384b341.10075678.png'),
+(19, 'Mateo ', 15413456, 'mateo@idiomas.com', 1, 'docs/img/671582097787a8.28857388.png'),
+(20, 'Luciana', 15467896, 'luciana@idiomas.com', 1, 'docs/img/6715848f3c6db2.18619763.png'),
+(21, 'Agustin', 15336789, 'agustin@idiomas.com', 4, 'docs/img/6715890b70d544.97355485.png');
 
 -- --------------------------------------------------------
 
@@ -127,13 +129,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `Idioma`
 --
 ALTER TABLE `Idioma`
-  MODIFY `id_idioma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_idioma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `Profesor`
 --
 ALTER TABLE `Profesor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `usuario`
